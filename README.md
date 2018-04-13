@@ -31,7 +31,7 @@ java Driver
 To test the program, the Driver has been outfitted with 4 user choices:  
 train from stdin (t): train on a string provided through standard input.  
 train from file (f): train on the contents of a file.  
-get complettions (i): input a string fragment, get Autocomplete Candidates.  
+get completions (i): input a string fragment, get Autocomplete Candidates.  
 quit (q): end program.  
 
 At the choice selection stage of the program, simply enter which of the four
@@ -54,7 +54,7 @@ ease of use. The standard input training allows quick use of the program,
 while the training from file allows larger training inputs to be provided more
 easily. Note that when training from a file, the Driver will load the entirety
 of the file's contents into a single String at once. For extremely large texts
-(more than a million words), this is not very effecient memory wise. To allow
+(more than a million words), this is not very efficient memory wise. To allow
 for much larger training corpora, the Driver could be modified to load chunks
 of the file one at a time, with a predetermined size, then individually train
 on the chunks. However, since this program is designed for mobile, I do not
@@ -80,8 +80,8 @@ to be, I made two design decisions. First, I expect the input to be in the
 English language - as such, I filter out any non-latin character. We can
 easily change this for other languages by simply changing the accepted
 alphabet. Second, I further filter out punctuation, numbers, and any other
-special symbols, except for apostraphes (') and hyphens (-). This is because
-we can reasonably expect to see apostraphes and hyphens in English words, but
+special symbols, except for apostrophes (') and hyphens (-). This is because
+we can reasonably expect to see apostrophes and hyphens in English words, but
 would not expect well formatted words to have other characters.  
 
 This filtering scheme is not shared for getting the completions of an input
@@ -92,17 +92,17 @@ simply not find any completions for the fragment.
 **TernaryTree**
 
 The underlying data structure in the AutocompleteProvider is a TernaryTree.
-Originally, I had planned to use a Trie as the underlying datastructure.
+Originally, I had planned to use a Trie as the underlying data structure.
 Trie's have O(n) lookup and O(n) insertion, where n is the length of the key.
-Unfortunately, despite being very effecient time wise, they use a lot of
+Unfortunately, despite being very efficient timewise, they use a lot of
 wasted space. Every Trie node has 26 children, quite a few of which may never
 get used (we wouldn't expect to see some combination of letters ever, such as
 "zzc"). To solve the memory issue, I instead used a TernaryTree. TernaryTrees
-give up a little bit of time effeciency to gain a lot of space effeciency.
+give up a little bit of time efficiency to gain a lot of space efficiency.
 Each node in the TernaryTree has exactly 3 children - reducing our memory
 overhead significantly.  
 
-One possible issue with TernaryTree's is that they can beccome degenerate. For
+One possible issue with TernaryTree's is that they can become degenerate. For
 example, if strings are added to the tree in alphabetical order, the
 TernaryTree would degenerate into linked lists, resulting in extremely bad
 time complexity performance. To solve this, the AutocompleteProvier shuffles
