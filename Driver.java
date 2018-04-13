@@ -68,9 +68,11 @@ public final class Driver {
                 }
             } catch (IOException e) {
                 System.out.println("Invalid filename!");
+	    } catch (StringIndexOutOfBoundsException e) {
+		System.out.println("Empty input!");
             } catch (NoSuchElementException e) {
                 break;
-            }
+	    }
             System.out.print("Please enter choice: ");
         }
         System.out.println("\nEnd up input reached. Quitting.");
