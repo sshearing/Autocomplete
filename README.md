@@ -1,5 +1,5 @@
 # Autocomplete Provider for a Mobile Device  
-Asymmetrik Code Challenge
+Asymmetrik Code Challenge  
 Steven Shearing
 
 ## General Information
@@ -13,26 +13,26 @@ input.
 
 ## Build, Run, Test
 
-** Build **  
+**Build**  
 
-To build, a Makefile has been provided. Simply run the following command:
-make
+To build, a Makefile has been provided. Simply run the following command:  
+make  
 
 To build individual files, run the following command:  
-javac <filename>.java
+javac <filename>.java  
 
-** Run **
+**Run**
 
-To run the program, run the following command:
-java Driver
+To run the program, run the following command:  
+java Driver  
 
-** Test **
+**Test**
 
-To test the program, the Driver has been outfitted with 4 user choices:
-train from stdin (t): train on a string provided through standard input.
-train from file (f): train on the contents of a file.
-get complettions (i): input a string fragment, get Autocomplete Candidates.
-quit (q): end program.
+To test the program, the Driver has been outfitted with 4 user choices:  
+train from stdin (t): train on a string provided through standard input.  
+train from file (f): train on the contents of a file.  
+get complettions (i): input a string fragment, get Autocomplete Candidates.  
+quit (q): end program.  
 
 At the choice selection stage of the program, simply enter which of the four
 choices you wish to execute by entering the corresponding character code,
@@ -45,7 +45,7 @@ or quit the program, the user will be prompted again for a choice to execute.
 
 ## Design Choices
 
-** Driver **
+**Driver**
 
 The Driver provided has four options: two for training, one for completions,
 and one to quit. To remind users of the choices, a welcome menu is printed
@@ -70,7 +70,7 @@ save(String filename) would write the TernaryTree to a file, and
 load(String filename) would load the TernaryTree from a file. Within a
 singular session however, we can train the model as many times as we like.
 
-** AutocompleteProvider **
+**AutocompleteProvider**
 
 The AutocompleteProvider follows the interface provided by the challenge
 exactly. It provides a way to train the completion algorithm, and a way to use
@@ -82,14 +82,14 @@ easily change this for other languages by simply changing the accepted
 alphabet. Second, I further filter out punctuation, numbers, and any other
 special symbols, except for apostraphes (') and hyphens (-). This is because
 we can reasonably expect to see apostraphes and hyphens in English words, but
-would not expect well formatted words to have other characters.
+would not expect well formatted words to have other characters.  
 
 This filtering scheme is not shared for getting the completions of an input
 word. I make no changes to the input fragment, except filtering out any
 quotation marks. If the fragment is poorly formatted, the algorithm will
 simply not find any completions for the fragment.
 
-** TernaryTree **
+**TernaryTree**
 
 The underlying data structure in the AutocompleteProvider is a TernaryTree.
 Originally, I had planned to use a Trie as the underlying datastructure.
@@ -100,7 +100,7 @@ get used (we wouldn't expect to see some combination of letters ever, such as
 "zzc"). To solve the memory issue, I instead used a TernaryTree. TernaryTrees
 give up a little bit of time effeciency to gain a lot of space effeciency.
 Each node in the TernaryTree has exactly 3 children - reducing our memory
-overhead significantly.
+overhead significantly.  
 
 One possible issue with TernaryTree's is that they can beccome degenerate. For
 example, if strings are added to the tree in alphabetical order, the
